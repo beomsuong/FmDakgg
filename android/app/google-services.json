@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "778331182227",
+    "project_id": "fmdakgg",
+    "storage_bucket": "fmdakgg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778331182227:android:a7e7bdb9ebd72c4bc92966",
+        "android_client_info": {
+          "package_name": "com.example.fmdakgg"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuLmMhFD-m60T3CL36AwcNLU3F8bGwjH4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

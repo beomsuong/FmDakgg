@@ -15,7 +15,7 @@ migrate_working_dir/
 *.ipr
 *.iws
 .idea/
-
+/functions/node_modules
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
 # is commented out by default.
@@ -30,7 +30,7 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
-
+C:\Github\flutter\fmdakgg\node_modules\.bin\acorn
 # Symbolication related
 app.*.symbols
 
@@ -42,3 +42,8 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 lib/firebase_options.dart
+*.cmd
+android/app/src/main/AndroidManifest.xml
+android/app/src/main/AndroidManifest.xml
+functions/fmdakgg-firebase-adminsdk-8gql9-c43d8988ce.json
+android/app/src/main/AndroidManifest.xml

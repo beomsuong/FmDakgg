@@ -124,22 +124,68 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-              Wrap(children: [
-                for (int i = 0; i < 10; i++)
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 60,
-                          width: 60,
-                          color: Colors.black,
-                        ),
-                        const Text('캐릭터')
-                      ],
+              Wrap(
+                children: [
+                  for (int i = 0; i < 10; i++)
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Container(
+                            height: 60,
+                            width: 60,
+                            color: Colors.black,
+                          ),
+                          const Text('캐릭터')
+                        ],
+                      ),
                     ),
-                  ),
-              ]),
+                ],
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 12),
+                color: Colors.grey[100],
+                child: Column(
+                  children: [
+                    Container(
+                      height: 100,
+                      color: Colors.black12,
+                      child: Row(
+                        children: [
+                          Container(
+                            height: 60,
+                            width: 60,
+                            color: Colors.black,
+                          ),
+                          const SizedBox(
+                            width: 6,
+                          ),
+                          const Text(
+                            '무기명',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          const Text(
+                            '캐릭터명',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ),

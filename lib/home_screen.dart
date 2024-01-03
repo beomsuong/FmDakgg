@@ -15,8 +15,26 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<String> list = <String>['One', 'Two', 'Three', 'Four'];
+  List<String> period = <String>[
+    'v1.10',
+    'v1.11',
+    '최근 3일 (v1.11)',
+    '최근 7일 (v.1.11)'
+  ];
 
+  List<String> section = <String>[
+    'in 1000',
+    '미스릴+',
+    '다이아1+',
+    '다이아2+',
+    '다이아몬드+',
+    '플래티넘+',
+    '플래티넘',
+    '골드',
+    '실버',
+    '브론즈',
+    '아이언'
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -111,9 +129,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                     width: 130,
                                     child: TextField(
                                       style: TextStyle(
+                                        fontSize: 14,
                                         color: Colors.grey,
                                       ),
                                       decoration: InputDecoration(
+                                        isDense: true,
                                         filled: true,
                                         fillColor: Colors.white,
                                         hintText: '실험체 검색 (수아, ㅅㅇ)',
@@ -277,26 +297,26 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     DropdownMenu<String>(
                       width: 180,
-                      initialSelection: list.first,
+                      initialSelection: period.first,
                       onSelected: (String? value) {
                         // This is called when the user selects an item.
                         setState(() {});
                       },
                       dropdownMenuEntries:
-                          list.map<DropdownMenuEntry<String>>((String value) {
+                          period.map<DropdownMenuEntry<String>>((String value) {
                         return DropdownMenuEntry<String>(
                             value: value, label: value);
                       }).toList(),
                     ),
                     DropdownMenu<String>(
                       width: 180,
-                      initialSelection: list.first,
+                      initialSelection: section.first,
                       onSelected: (String? value) {
                         // This is called when the user selects an item.
                         setState(() {});
                       },
-                      dropdownMenuEntries:
-                          list.map<DropdownMenuEntry<String>>((String value) {
+                      dropdownMenuEntries: section
+                          .map<DropdownMenuEntry<String>>((String value) {
                         return DropdownMenuEntry<String>(
                             value: value, label: value);
                       }).toList(),

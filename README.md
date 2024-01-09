@@ -2,15 +2,9 @@
 
 A new Flutter project.
 
-## Getting Started
+#사용 패키지
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1.  flutter_screenutil -> 기기별 해상도 맞춤 적용
+2.  go_router -> 페이지 라우팅
+3.  shimmer -> 스켈레톤(로딩) 화면
+4.  riverpod -> 상태관리자

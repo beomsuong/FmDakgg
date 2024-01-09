@@ -41,6 +41,7 @@ dependencies:
   http: ^1.1.2
   firebase_auth: ^4.15.3
   shimmer: ^3.0.0
+  riverpod: ^2.4.9
 
 dev_dependencies:
   flutter_test:

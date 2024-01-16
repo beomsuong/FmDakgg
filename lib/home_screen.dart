@@ -6,6 +6,7 @@
 */
 
 import 'package:flutter/material.dart';
+import 'package:fmdakgg/matchResultsWidget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -42,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              const MatchResultsWidget(),
               Container(
                 color: const Color.fromARGB(234, 13, 13, 13),
                 child: Padding(

@@ -33,55 +33,63 @@ class _MatchResultsWidgetState extends State<MatchResultsWidget> {
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      width: 380.w,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.baseline,
-                                textBaseline: TextBaseline.alphabetic,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  SizedBox(
-                                    width: 10.w,
-                                  ),
-                                  const Text(
-                                    '승리',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                  const Text(' 코발트'),
-                                  const Text(' 091:04'),
-                                  const Text(' 1시간 전'),
-                                ],
-                              ),
-                              GestureDetector(
-                                  onTap: () {},
-                                  child: const Icon(
-                                      Icons.keyboard_arrow_down_sharp))
-                            ],
-                          ),
-                          SizedBox(
-                            width: 330.w,
-                            child: const Divider(
-                              color: Colors.red,
-                              thickness: 2.0,
-                            ),
-                          ),
-                        ],
-                      ),
+                Container(
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(color: Colors.grey),
                     ),
-                  ],
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        height: 30,
+                        width: 380.w,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.baseline,
+                                  textBaseline: TextBaseline.alphabetic,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(
+                                      width: 10.w,
+                                    ),
+                                    const Text(
+                                      '승리',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                    const Text(' 코발트'),
+                                    const Text(
+                                      ' 09:04',
+                                      style: TextStyle(color: Colors.grey),
+                                    ),
+                                    const Text(
+                                      ' 1시간 전',
+                                      style: TextStyle(color: Colors.grey),
+                                    ),
+                                  ],
+                                ),
+                                GestureDetector(
+                                    onTap: () {},
+                                    child: const Icon(
+                                        Icons.keyboard_arrow_down_sharp))
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(
                   width: 380.w,
@@ -173,20 +181,50 @@ class _MatchResultsWidgetState extends State<MatchResultsWidget> {
                                   children: [
                                     Row(
                                       children: [
-                                        Text('25'),
+                                        Text(
+                                          '25',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
                                         Text('/'),
-                                        Text('6'),
+                                        Text(
+                                          '6',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
                                         Text('/'),
-                                        Text('10'),
+                                        Text(
+                                          '10',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
                                       ],
                                     ),
                                     Row(
                                       children: [
-                                        Text('TK'),
-                                        Text('/'),
-                                        Text('K'),
-                                        Text('/'),
-                                        Text('A'),
+                                        Text(
+                                          'TK',
+                                          style: TextStyle(color: Colors.grey),
+                                        ),
+                                        Text(
+                                          '/',
+                                          style: TextStyle(color: Colors.grey),
+                                        ),
+                                        Text(
+                                          'K',
+                                          style: TextStyle(color: Colors.grey),
+                                        ),
+                                        Text(
+                                          '/',
+                                          style: TextStyle(color: Colors.grey),
+                                        ),
+                                        Text(
+                                          'A',
+                                          style: TextStyle(color: Colors.grey),
+                                        ),
                                       ],
                                     )
                                   ],

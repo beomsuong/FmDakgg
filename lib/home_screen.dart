@@ -6,7 +6,8 @@
 */
 
 import 'package:flutter/material.dart';
-import 'package:fmdakgg/matchResultsWidget.dart';
+import 'package:fmdakgg/match_result_model.dart';
+import 'package:fmdakgg/match_results_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -36,6 +37,14 @@ class _HomeScreenState extends State<HomeScreen> {
     '브론즈',
     '아이언'
   ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    MatchResultModel().test();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return const Scaffold(

@@ -1,19 +1,13 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fmdakgg/firebase_options.dart';
 import 'package:fmdakgg/home_screen.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
   runApp(
-    const MyApp(),
+    const ProviderScope(child: MyApp()),
   );
 }
 
@@ -22,22 +16,21 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return const HomeScreen();
+        return HomeScreen();
       },
-      // routes: <RouteBase>[
-      //   GoRoute(
-      //     path: 'details',
-      //     builder: (BuildContext context, GoRouterState state) {
-      //       return const DetailsScreen();
-      //     },
-      //   ),
-      // ],
+      routes: const <RouteBase>[
+        // GoRoute(
+        //   path: 'details',
+        //   builder: (BuildContext context, GoRouterState state) {
+        //     return const DetailsScreen();
+        //   },
+        // ),
+      ],
     ),
   ],
 );
 
 class MyApp extends StatelessWidget {
-  /// Constructs a [MyApp]
   const MyApp({super.key});
 
   @override

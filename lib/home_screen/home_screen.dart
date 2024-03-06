@@ -1,39 +1,21 @@
-/*
-필수 구현 목록
-
-1. 실험체 목록 스크롤을 끝까지 땡겼을 시 전체 화면이 이동하도록 하기
-
-*/
 import 'package:flutter/material.dart';
+import 'package:fmdakgg/home_screen/home_screen_model.dart';
+import 'package:fmdakgg/home_screen/home_screen_view_model.dart';
 import 'package:fmdakgg/match_results_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+final homeScreenViewModelProvider =
+    StateNotifierProvider<HomeScreenViewModel, HomeScreenModel>(
+        (ref) => HomeScreenViewModel());
+final TextEditingController searchController = TextEditingController();
+
 class HomeScreen extends ConsumerWidget {
-  List<String> period = <String>[
-    'v1.10',
-    'v1.11',
-    '최근 3일 (v1.11)',
-    '최근 7일 (v.1.11)'
-  ];
-
-  List<String> section = <String>[
-    'in 1000',
-    '미스릴+',
-    '다이아1+',
-    '다이아2+',
-    '다이아몬드+',
-    '플래티넘+',
-    '플래티넘',
-    '골드',
-    '실버',
-    '브론즈',
-    '아이언'
-  ];
-
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final homeScreenModel = ref.watch(homeScreenViewModelProvider);
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -108,28 +90,28 @@ class HomeScreen extends ConsumerWidget {
                       child: Container(
                         height: 50,
                         color: const Color.fromARGB(234, 13, 13, 13),
-                        child: const Align(
+                        child: Align(
                           alignment: Alignment.centerLeft,
                           child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 30),
+                            padding: const EdgeInsets.symmetric(horizontal: 30),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
+                                const Text(
                                   '실험체 목록',
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 8.0),
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 8.0),
                                   child: SizedBox(
                                     width: 130,
                                     child: TextField(
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.grey,
-                                      ),
-                                      decoration: InputDecoration(
+                                      controller: searchController,
+                                      style: const TextStyle(
+                                          fontSize: 14, color: Colors.grey),
+                                      decoration: const InputDecoration(
                                         isDense: true,
                                         filled: true,
                                         fillColor: Colors.white,
@@ -138,6 +120,18 @@ class HomeScreen extends ConsumerWidget {
                                             TextStyle(color: Colors.grey),
                                         border: InputBorder.none, // 테두리 없애기
                                       ),
+                                      onChanged: (value) {
+                                        ref
+                                            .read(homeScreenViewModelProvider
+                                                .notifier)
+                                            .filterCharacters(value);
+                                      },
+                                      onSubmitted: (value) {
+                                        ref
+                                            .read(homeScreenViewModelProvider
+                                                .notifier)
+                                            .filterCharacters(value);
+                                      },
                                     ),
                                   ),
                                 ),
@@ -150,29 +144,31 @@ class HomeScreen extends ConsumerWidget {
                   ),
                 ],
               ),
+
               SizedBox(
                 height: 300,
                 child: SingleChildScrollView(
                   child: Wrap(
-                    children: [
-                      for (int i = 0; i < 60; i++)
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: [
-                              Container(
-                                height: 60,
-                                width: 60,
-                                color: Colors.black,
-                              ),
-                              const Text('캐릭터')
-                            ],
-                          ),
+                    children: homeScreenModel.characterList.map((character) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            Container(
+                              height: 60,
+                              width: 60,
+                              color:
+                                  Colors.black, // 이 부분은 필요에 따라 캐릭터의 이미지로 대체 가능
+                            ),
+                            Text(character) // 캐릭터 이름
+                          ],
                         ),
-                    ],
+                      );
+                    }).toList(),
                   ),
                 ),
               ),
+
               const SizedBox(
                 height: 50,
               ),
@@ -287,34 +283,34 @@ class HomeScreen extends ConsumerWidget {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    DropdownMenu<String>(
-                      width: 180,
-                      initialSelection: period.first,
-                      onSelected: (String? value) {},
-                      dropdownMenuEntries:
-                          period.map<DropdownMenuEntry<String>>((String value) {
-                        return DropdownMenuEntry<String>(
-                            value: value, label: value);
-                      }).toList(),
-                    ),
-                    DropdownMenu<String>(
-                      width: 180,
-                      initialSelection: section.first,
-                      onSelected: (String? value) {},
-                      dropdownMenuEntries: section
-                          .map<DropdownMenuEntry<String>>((String value) {
-                        return DropdownMenuEntry<String>(
-                            value: value, label: value);
-                      }).toList(),
-                    ),
-                  ],
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.all(12.0),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     children: [
+              //       DropdownMenu<String>(
+              //         width: 180,
+              //         initialSelection: period.first,
+              //         onSelected: (String? value) {},
+              //         dropdownMenuEntries:
+              //             period.map<DropdownMenuEntry<String>>((String value) {
+              //           return DropdownMenuEntry<String>(
+              //               value: value, label: value);
+              //         }).toList(),
+              //       ),
+              //       DropdownMenu<String>(
+              //         width: 180,
+              //         initialSelection: section.first,
+              //         onSelected: (String? value) {},
+              //         dropdownMenuEntries: section
+              //             .map<DropdownMenuEntry<String>>((String value) {
+              //           return DropdownMenuEntry<String>(
+              //               value: value, label: value);
+              //         }).toList(),
+              //       ),
+              //     ],
+              //   ),
+              // ),
               Padding(
                 padding: const EdgeInsets.symmetric(
                   vertical: 24.0,

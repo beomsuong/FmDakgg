@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fmdakgg/home_screen/home_screen.dart';
+import 'package:fmdakgg/player_search/player_search.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -16,15 +17,16 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return HomeScreen();
+        return const HomeScreen();
       },
-      routes: const <RouteBase>[
-        // GoRoute(
-        //   path: 'details',
-        //   builder: (BuildContext context, GoRouterState state) {
-        //     return const DetailsScreen();
-        //   },
-        // ),
+      routes: <RouteBase>[
+        GoRoute(
+            path: 'player/:nickname',
+            builder: (BuildContext context, GoRouterState state) {
+              return PlayerSearch(
+                nickname: state.pathParameters['nickname'] as String,
+              );
+            }),
       ],
     ),
   ],

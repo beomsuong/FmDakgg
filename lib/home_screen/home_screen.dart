@@ -3,6 +3,7 @@ import 'package:fmdakgg/home_screen/home_screen_model.dart';
 import 'package:fmdakgg/home_screen/home_screen_view_model.dart';
 import 'package:fmdakgg/match_results_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 final homeScreenViewModelProvider =
     StateNotifierProvider<HomeScreenViewModel, HomeScreenModel>(
@@ -15,7 +16,6 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final homeScreenModel = ref.watch(homeScreenViewModelProvider);
-
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -47,16 +47,20 @@ class HomeScreen extends ConsumerWidget {
                             ),
                             border: Border.all(color: Colors.black, width: 1),
                           ),
-                          child: const TextField(
-                            style: TextStyle(fontSize: 14, color: Colors.white),
+                          child: TextField(
+                            style: const TextStyle(
+                                fontSize: 14, color: Colors.white),
                             textAlign: TextAlign.left,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               hintText: '플레이어 닉네임을 입력해주세요.',
                               hintStyle: TextStyle(
                                 fontSize: 14,
                                 color: Colors.white54,
                               ),
                             ),
+                            onSubmitted: (value) {
+                              context.go('/player/$value');
+                            },
                           ),
                         ),
                       ),

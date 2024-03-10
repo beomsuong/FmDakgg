@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fmdakgg/player_search/match_results_widget.dart';
 
 class PlayerSearch extends ConsumerStatefulWidget {
   final String nickname;
@@ -12,6 +14,15 @@ class PlayerSearch extends ConsumerStatefulWidget {
 class _PlayerSearchState extends ConsumerState<PlayerSearch> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Scaffold(
+      body: SafeArea(
+          child: SingleChildScrollView(
+        child: Column(
+          children: [
+            MatchResultsWidget(),
+          ],
+        ),
+      )),
+    );
   }
 }

@@ -2,13 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MatchResultsWidget extends StatefulWidget {
-  const MatchResultsWidget({super.key});
+  final gameInfo;
+  const MatchResultsWidget({super.key, this.gameInfo});
 
   @override
   State<MatchResultsWidget> createState() => _MatchResultsWidgetState();
 }
 
 class _MatchResultsWidgetState extends State<MatchResultsWidget> {
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    print("데이터 출력 ${widget.gameInfo}");
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(

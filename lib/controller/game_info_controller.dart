@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:fmdakgg/model/userInfo_model.dart';
+import 'package:fmdakgg/player_search/game_info_model.dart';
 import 'package:riverpod/riverpod.dart';
 
 final counterProvider =
@@ -15,6 +16,7 @@ class CounterController extends StateNotifier<GameInfoModel> {
       var response = await dio.get('http://10.0.2.2:3000/player/$nickName');
       if (response.statusCode == 200) {
         state = GameInfoModel.fromJson(response.data);
+        print(GameInfoModel.fromJson(response.data).userGames);
       } else {
         print("${response.statusCode}");
       }

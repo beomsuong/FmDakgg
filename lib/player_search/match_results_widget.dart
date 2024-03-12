@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fmdakgg/model/userInfo_model.dart';
 
 class MatchResultsWidget extends StatefulWidget {
-  final gameInfo;
-  const MatchResultsWidget({super.key, this.gameInfo});
+  final GameInfoModel gameInfo;
+  const MatchResultsWidget({super.key, required this.gameInfo});
 
   @override
   State<MatchResultsWidget> createState() => _MatchResultsWidgetState();
 }
 
 class _MatchResultsWidgetState extends State<MatchResultsWidget> {
+  late UserGames userData;
   @override
   void initState() {
-    // TODO: implement initState
-
-    print("데이터 출력 ${widget.gameInfo}");
+    for (var data in widget.gameInfo.userGames!) {
+      if (data.userNum == 418355) {
+        userData = data;
+        break;
+      }
+    }
     super.initState();
   }
 
@@ -185,26 +190,26 @@ class _MatchResultsWidgetState extends State<MatchResultsWidget> {
                                     ),
                                   ],
                                 ),
-                                const Column(
+                                Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Row(
                                       children: [
                                         Text(
-                                          '25',
-                                          style: TextStyle(
+                                          userData.teamKill.toString(),
+                                          style: const TextStyle(
                                             fontWeight: FontWeight.w700,
                                           ),
                                         ),
-                                        Text('/'),
-                                        Text(
+                                        const Text('/'),
+                                        const Text(
                                           '6',
                                           style: TextStyle(
                                             fontWeight: FontWeight.w700,
                                           ),
                                         ),
-                                        Text('/'),
-                                        Text(
+                                        const Text('/'),
+                                        const Text(
                                           '10',
                                           style: TextStyle(
                                             fontWeight: FontWeight.w700,
@@ -212,7 +217,7 @@ class _MatchResultsWidgetState extends State<MatchResultsWidget> {
                                         ),
                                       ],
                                     ),
-                                    Row(
+                                    const Row(
                                       children: [
                                         Text(
                                           'TK',

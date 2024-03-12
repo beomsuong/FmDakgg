@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fmdakgg/model/userInfo_model.dart';
 import 'package:fmdakgg/player_search/match_results_widget.dart';
 import 'package:fmdakgg/player_search/game_info_model.dart';
 import 'package:fmdakgg/player_search/match_results_view_model.dart';
@@ -37,8 +38,7 @@ class _PlayerSearchState extends ConsumerState<PlayerSearch> {
           child: Column(
             children: [
               gameInfoAsyncValue.when(
-                data: (data) => MatchResultsWidget(
-                    gameInfo: data), // MatchResultsWidget 업데이트 필요
+                data: (data) => MatchResultsWidget(gameInfo: data),
                 loading: () => const CircularProgressIndicator(),
                 error: (error, stack) => Text('Error: $error'),
               ),

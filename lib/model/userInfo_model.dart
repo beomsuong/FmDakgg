@@ -32,6 +32,8 @@ class UserGames {
   int? characterNum;
   int? characterLevel;
   int? teamKill;
+  int? playerKill;
+  int? playerAssistant;
   int? damageToPlayer;
   List<int>? finalInfusion;
   Equipment? equipment;
@@ -44,6 +46,8 @@ class UserGames {
       this.characterNum,
       this.characterLevel,
       this.teamKill,
+      this.playerKill,
+      this.playerAssistant,
       this.damageToPlayer,
       this.finalInfusion,
       this.equipment,
@@ -56,6 +60,8 @@ class UserGames {
     characterNum = json['characterNum'];
     characterLevel = json['characterLevel'];
     teamKill = json['teamKill'];
+    playerKill = json['playerKill'];
+    playerAssistant = json['playerAssistant'];
     damageToPlayer = json['damageToPlayer'];
     finalInfusion = json['finalInfusion'].cast<int>();
     equipment = json['equipment'] != null
@@ -72,6 +78,8 @@ class UserGames {
     data['characterNum'] = characterNum;
     data['characterLevel'] = characterLevel;
     data['teamKill'] = teamKill;
+    data['playerKill'] = playerKill;
+    data['playerAssistant'] = playerAssistant;
     data['damageToPlayer'] = damageToPlayer;
     data['finalInfusion'] = finalInfusion;
     if (equipment != null) {

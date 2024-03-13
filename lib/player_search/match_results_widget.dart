@@ -14,12 +14,15 @@ class _MatchResultsWidgetState extends State<MatchResultsWidget> {
   late UserGames userData;
   @override
   void initState() {
+    userData = widget.gameInfo.userGames![0];
+
     for (var data in widget.gameInfo.userGames!) {
       if (data.userNum == 418355) {
         userData = data;
         break;
       }
     }
+
     super.initState();
   }
 
@@ -202,16 +205,16 @@ class _MatchResultsWidgetState extends State<MatchResultsWidget> {
                                           ),
                                         ),
                                         const Text('/'),
-                                        const Text(
-                                          '6',
-                                          style: TextStyle(
+                                        Text(
+                                          userData.playerKill.toString(),
+                                          style: const TextStyle(
                                             fontWeight: FontWeight.w700,
                                           ),
                                         ),
                                         const Text('/'),
-                                        const Text(
-                                          '10',
-                                          style: TextStyle(
+                                        Text(
+                                          userData.playerAssistant.toString(),
+                                          style: const TextStyle(
                                             fontWeight: FontWeight.w700,
                                           ),
                                         ),
@@ -294,12 +297,14 @@ class _MatchResultsWidgetState extends State<MatchResultsWidget> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            const Row(
+                            Row(
                               crossAxisAlignment: CrossAxisAlignment.baseline,
                               textBaseline: TextBaseline.alphabetic,
                               children: [
-                                Text('23,063'),
-                                Text('딜량'),
+                                Text(
+                                  userData.damageToPlayer.toString(),
+                                ),
+                                const Text('딜량'),
                               ],
                             ),
                             const Row(

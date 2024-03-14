@@ -12,17 +12,6 @@ class MatchResultsWidget extends StatefulWidget {
 
 class _MatchResultsWidgetState extends State<MatchResultsWidget> {
   late UserGames userData;
-  List<Color> gameRankColors = [
-    const Color(0xFF11B288), //1등
-    const Color(0xFF207AC7), //2등
-    const Color(0xFF207AC7), //3등
-    const Color(0xFF999999), //광탈
-    const Color(0xFF999999), //광탈
-    const Color(0xFF999999), //광탈
-    const Color(0xFF999999), //광탈
-    const Color(0xFF999999), //광탈
-    const Color(0xFF475482) //탈출
-  ];
   @override
   void initState() {
     userData = widget.gameInfo.userGames![0];
@@ -56,9 +45,7 @@ class _MatchResultsWidgetState extends State<MatchResultsWidget> {
             Container(
               height: 120.h,
               width: 10.w,
-              color: userData.escapeState == 3
-                  ? gameRankColors.last
-                  : gameRankColors[userData.gameRank as int],
+              color: Colors.amber,
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -92,19 +79,16 @@ class _MatchResultsWidgetState extends State<MatchResultsWidget> {
                                     SizedBox(
                                       width: 10.w,
                                     ),
-                                    Text(
-                                      userData.escapeState == 3
-                                          ? '탈출'
-                                          : '#${userData.gameRank}',
-                                      style: const TextStyle(
+                                    const Text(
+                                      '승리',
+                                      style: TextStyle(
                                         fontWeight: FontWeight.w700,
                                       ),
                                     ),
-                                    const Text(' 루미아섬'),
-                                    Text(
-                                      '${(Duration(seconds: userData.playTime as int)).inMinutes.remainder(60).toString().padLeft(2, '0')}:${(Duration(seconds: userData.playTime as int)).inSeconds.remainder(60).toString().padLeft(2, '0')}',
-                                      style:
-                                          const TextStyle(color: Colors.grey),
+                                    const Text(' 코발트'),
+                                    const Text(
+                                      ' 09:04',
+                                      style: TextStyle(color: Colors.grey),
                                     ),
                                     const Text(
                                       ' 1시간 전',
@@ -153,19 +137,9 @@ class _MatchResultsWidgetState extends State<MatchResultsWidget> {
                                         borderRadius:
                                             BorderRadius.circular(100.0),
                                         child: Container(
-                                          color: Colors.white,
+                                          color: Colors.red,
                                           width: 15,
                                           height: 15,
-                                          child: Center(
-                                            child: Text(
-                                              userData.characterLevel
-                                                  .toString(),
-                                              style: TextStyle(
-                                                fontSize:
-                                                    10.sp, // 여기서 글자 크기를 조절합니다.
-                                              ),
-                                            ),
-                                          ),
                                         ),
                                       ),
                                     ),

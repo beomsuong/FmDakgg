@@ -27,6 +27,7 @@ class GameInfoModel {
 }
 
 class UserGames {
+  int? gameRank;
   int? userNum;
   int? playTime;
   int? characterNum;
@@ -39,9 +40,10 @@ class UserGames {
   Equipment? equipment;
   int? sumTotalVFCredits;
   String? sId;
-
+  int? escapeState;
   UserGames(
-      {this.userNum,
+      {this.gameRank,
+      this.userNum,
       this.playTime,
       this.characterNum,
       this.characterLevel,
@@ -52,9 +54,11 @@ class UserGames {
       this.finalInfusion,
       this.equipment,
       this.sumTotalVFCredits,
-      this.sId});
+      this.sId,
+      this.escapeState});
 
   UserGames.fromJson(Map<String, dynamic> json) {
+    gameRank = json['gameRank'];
     userNum = json['userNum'];
     playTime = json['playTime'];
     characterNum = json['characterNum'];
@@ -69,10 +73,12 @@ class UserGames {
         : null;
     sumTotalVFCredits = json['sumTotalVFCredits'];
     sId = json['_id'];
+    escapeState = json['escapeState'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data['gameRank'] = gameRank;
     data['userNum'] = userNum;
     data['playTime'] = playTime;
     data['characterNum'] = characterNum;
@@ -87,6 +93,7 @@ class UserGames {
     }
     data['sumTotalVFCredits'] = sumTotalVFCredits;
     data['_id'] = sId;
+    data['escapeState'] = escapeState;
     return data;
   }
 }

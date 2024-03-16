@@ -21,15 +21,11 @@ class _PlayerSearchState extends ConsumerState<PlayerSearch> {
   @override
   void initState() {
     super.initState();
-    ref
-        .read(matchResultsViewModelProvider.notifier)
-        .fetchGameData(widget.nickname);
   }
 
   @override
   Widget build(BuildContext context) {
     final gameInfoAsyncValue = ref.watch(matchResultsViewModelProvider);
-
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fmdakgg/model/userInfo_model.dart';
+import 'package:fmdakgg/util/function.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class MatchResultsWidget extends StatefulWidget {
   final GameInfoModel gameInfo;
@@ -28,7 +30,7 @@ class _MatchResultsWidgetState extends State<MatchResultsWidget> {
     userData = widget.gameInfo.userGames![0];
 
     for (var data in widget.gameInfo.userGames!) {
-      if (data.userNum == 418355) {
+      if (data.userNum == widget.gameInfo.userNum) {
         userData = data;
         break;
       }
@@ -102,14 +104,22 @@ class _MatchResultsWidgetState extends State<MatchResultsWidget> {
                                     ),
                                     const Text(' 루미아섬'),
                                     Text(
-                                      '${(Duration(seconds: userData.playTime as int)).inMinutes.remainder(60).toString().padLeft(2, '0')}:${(Duration(seconds: userData.playTime as int)).inSeconds.remainder(60).toString().padLeft(2, '0')}',
+                                      '${(Duration(seconds: userData.playTime as int)).inMinutes.remainder(60).toString().padLeft(2, '0')}:${(Duration(seconds: userData.playTime as int)).inSeconds.remainder(60).toString().padLeft(2, '0')} ',
                                       style:
                                           const TextStyle(color: Colors.grey),
                                     ),
-                                    const Text(
-                                      ' 1시간 전',
-                                      style: TextStyle(color: Colors.grey),
-                                    ),
+                                    Text(
+                                      timeago.format(
+                                        DateTime.now().subtract(
+                                          DateTime.now().difference(
+                                              DateTime.parse(
+                                                  userData.startDtm as String)),
+                                        ),
+                                        locale: 'ko',
+                                      ),
+                                      style:
+                                          const TextStyle(color: Colors.grey),
+                                    )
                                   ],
                                 ),
                                 GestureDetector(
@@ -141,9 +151,11 @@ class _MatchResultsWidgetState extends State<MatchResultsWidget> {
                                       borderRadius:
                                           BorderRadius.circular(100.0),
                                       child: Container(
-                                        color: Colors.amber,
+                                        color: Colors.grey,
                                         width: 40,
                                         height: 40,
+                                        child: Image.network(
+                                            'http://10.0.2.2:3000/charactersImage'),
                                       ),
                                     ),
                                     Positioned(
@@ -323,6 +335,7 @@ class _MatchResultsWidgetState extends State<MatchResultsWidget> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
+                            SizedBox(height: 20.h),
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.baseline,
                               textBaseline: TextBaseline.alphabetic,
@@ -333,51 +346,13 @@ class _MatchResultsWidgetState extends State<MatchResultsWidget> {
                                 const Text('딜량'),
                               ],
                             ),
-                            const Row(
-                              crossAxisAlignment: CrossAxisAlignment.baseline,
-                              textBaseline: TextBaseline.alphabetic,
-                              children: [
-                                Text('1.78'),
-                                Text('평점'),
-                                Text('(KDA)'),
-                              ],
-                            ),
                             Row(
                               children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(100.0),
-                                  child: Container(
-                                    color: Colors.amber,
-                                    width: 15,
-                                    height: 15,
-                                  ),
-                                ),
+                                Text(userData.routeIdOfStart.toString()),
                                 const SizedBox(
                                   width: 2,
                                 ),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(100.0),
-                                  child: Container(
-                                    color: Colors.amber,
-                                    width: 15,
-                                    height: 15,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 2,
-                                ),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(100.0),
-                                  child: Container(
-                                    color: Colors.amber,
-                                    width: 15,
-                                    height: 15,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 2,
-                                ),
-                                const Text('인퓨전')
+                                const Text('루트ID')
                               ],
                             )
                           ],

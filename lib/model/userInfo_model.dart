@@ -3,11 +3,12 @@ import 'package:dio/src/response.dart';
 class GameInfoModel {
   int? iId;
   List<UserGames>? userGames;
+  int? userNum;
+  GameInfoModel({this.iId, this.userGames, this.userNum});
 
-  GameInfoModel({this.iId, this.userGames});
-
-  GameInfoModel.fromJson(Map<String, dynamic> json) {
+  GameInfoModel.fromJson(Map<String, dynamic> json, {required userNum}) {
     iId = json['_id'];
+    userNum = json['userNum'];
     if (json['userGames'] != null) {
       userGames = <UserGames>[];
       json['userGames'].forEach((v) {
@@ -19,6 +20,7 @@ class GameInfoModel {
   Map<String, dynamic> toJson(Response response) {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['_id'] = iId;
+    data['userNum'] = userNum;
     if (userGames != null) {
       data['userGames'] = userGames!.map((v) => v.toJson()).toList();
     }
@@ -30,12 +32,14 @@ class UserGames {
   int? gameRank;
   int? userNum;
   int? playTime;
+  String? startDtm;
   int? characterNum;
   int? characterLevel;
   int? teamKill;
   int? playerKill;
   int? playerAssistant;
   int? damageToPlayer;
+  int? routeIdOfStart;
   List<int>? finalInfusion;
   Equipment? equipment;
   int? sumTotalVFCredits;
@@ -45,12 +49,14 @@ class UserGames {
       {this.gameRank,
       this.userNum,
       this.playTime,
+      this.startDtm,
       this.characterNum,
       this.characterLevel,
       this.teamKill,
       this.playerKill,
       this.playerAssistant,
       this.damageToPlayer,
+      this.routeIdOfStart,
       this.finalInfusion,
       this.equipment,
       this.sumTotalVFCredits,
@@ -61,12 +67,14 @@ class UserGames {
     gameRank = json['gameRank'];
     userNum = json['userNum'];
     playTime = json['playTime'];
+    startDtm = json['startDtm'];
     characterNum = json['characterNum'];
     characterLevel = json['characterLevel'];
     teamKill = json['teamKill'];
     playerKill = json['playerKill'];
     playerAssistant = json['playerAssistant'];
     damageToPlayer = json['damageToPlayer'];
+    routeIdOfStart = json['routeIdOfStart'];
     finalInfusion = json['finalInfusion'].cast<int>();
     equipment = json['equipment'] != null
         ? Equipment.fromJson(json['equipment'])
@@ -81,12 +89,14 @@ class UserGames {
     data['gameRank'] = gameRank;
     data['userNum'] = userNum;
     data['playTime'] = playTime;
+    data['startDtm'] = startDtm;
     data['characterNum'] = characterNum;
     data['characterLevel'] = characterLevel;
     data['teamKill'] = teamKill;
     data['playerKill'] = playerKill;
     data['playerAssistant'] = playerAssistant;
     data['damageToPlayer'] = damageToPlayer;
+    data['routeIdOfStart'] = routeIdOfStart;
     data['finalInfusion'] = finalInfusion;
     if (equipment != null) {
       data['equipment'] = equipment!.toJson();

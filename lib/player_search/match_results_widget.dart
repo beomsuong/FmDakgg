@@ -27,6 +27,7 @@ class _MatchResultsWidgetState extends State<MatchResultsWidget> {
   ];
   @override
   void initState() {
+    print("유저 넘 ${widget.gameInfo.userNum}");
     userData = widget.gameInfo.userGames![0];
 
     for (var data in widget.gameInfo.userGames!) {

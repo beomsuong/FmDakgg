@@ -8,7 +8,7 @@ class GameInfoModel {
 
   GameInfoModel.fromJson(Map<String, dynamic> json, {required userNum}) {
     iId = json['_id'];
-    userNum = json['userNum'];
+    this.userNum = userNum;
     if (json['userGames'] != null) {
       userGames = <UserGames>[];
       json['userGames'].forEach((v) {
@@ -20,7 +20,7 @@ class GameInfoModel {
   Map<String, dynamic> toJson(Response response) {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['_id'] = iId;
-    data['userNum'] = userNum;
+    userNum = userNum;
     if (userGames != null) {
       data['userGames'] = userGames!.map((v) => v.toJson()).toList();
     }

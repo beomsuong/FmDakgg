@@ -4,10 +4,12 @@ import 'package:fmdakgg/model/userInfo_model.dart';
 import 'package:fmdakgg/player_search/match_results_widget.dart';
 import 'package:fmdakgg/player_search/match_results_view_model.dart';
 
-final matchResultsViewModelProvider = StateNotifierProvider<
-    MatchResultsViewModel, AsyncValue<List<GameInfoModel>>>((ref) {
-  return MatchResultsViewModel();
-});
+final matchResultsViewModelProvider = StateNotifierProvider.family<
+    MatchResultsViewModel, AsyncValue<List<GameInfoModel>>, String>(
+  (ref, nickname) {
+    return MatchResultsViewModel(nickname);
+  },
+);
 
 class PlayerSearch extends ConsumerStatefulWidget {
   final String nickname;
@@ -25,7 +27,8 @@ class _PlayerSearchState extends ConsumerState<PlayerSearch> {
 
   @override
   Widget build(BuildContext context) {
-    final gameInfoAsyncValue = ref.watch(matchResultsViewModelProvider);
+    final gameInfoAsyncValue =
+        ref.watch(matchResultsViewModelProvider(widget.nickname));
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -38,10 +41,8 @@ class _PlayerSearchState extends ConsumerState<PlayerSearch> {
                     return MatchResultsWidget(gameInfo: gameInfo);
                   }).toList();
 
-                  // 10개의 위젯만 표시하도록 제한 (리스트의 길이가 10보다 작은 경우 전체 리스트 사용)
                   final displayedWidgets =
                       widgets.length > 10 ? widgets.sublist(0, 10) : widgets;
-
                   return Column(
                     children: displayedWidgets,
                   );

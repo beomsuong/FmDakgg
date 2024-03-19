@@ -14,16 +14,14 @@ class MatchResultsViewModel
     state = const AsyncValue.loading();
 
     final responseNum = await dio.get('http://10.0.2.2:3000/v1/user/num/aasam');
-
+    print("조회한 번호 ${responseNum.data}");
     try {
-      final response = await dio.get('http://10.0.2.2:3000/player/aasam',
-          queryParameters: {'nickname': nickname});
+      final response = await dio.get('http://10.0.2.2:3000/player/aasam');
 
       if (response.statusCode == 200) {
         final gameInfoList = List<GameInfoModel>.from((response.data as List)
             .map((item) => GameInfoModel.fromJson(item,
-                userNum: responseNum.data['user']['userNum'])));
-
+                userNum: responseNum.data['userNum'])));
         state = AsyncValue.data(gameInfoList);
       } else {
         state = AsyncValue.error(

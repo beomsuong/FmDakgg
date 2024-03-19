@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fmdakgg/model/userInfo_model.dart';
 import 'package:fmdakgg/util/function.dart';
+import 'package:intl/intl.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class MatchResultsWidget extends StatefulWidget {
@@ -16,6 +17,7 @@ class _MatchResultsWidgetState extends State<MatchResultsWidget> {
   late UserGames userData;
   List<Color> gameRankColors = [
     const Color(0xFF11B288), //1등
+    const Color(0xFF11B288), //1등
     const Color(0xFF207AC7), //2등
     const Color(0xFF207AC7), //3등
     const Color(0xFF999999), //광탈
@@ -25,6 +27,7 @@ class _MatchResultsWidgetState extends State<MatchResultsWidget> {
     const Color(0xFF999999), //광탈
     const Color(0xFF475482) //탈출
   ];
+  bool Detailed = false;
   @override
   void initState() {
     print("유저 넘 ${widget.gameInfo.userNum}");
@@ -99,15 +102,19 @@ class _MatchResultsWidgetState extends State<MatchResultsWidget> {
                                       userData.escapeState == 3
                                           ? '탈출'
                                           : '#${userData.gameRank}',
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.w700,
-                                      ),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                          color: gameRankColors[
+                                              userData.gameRank as int]),
                                     ),
-                                    const Text(' 루미아섬'),
+                                    Text(
+                                      ' 루미아섬 ',
+                                      style: TextStyle(fontSize: 12.sp),
+                                    ),
                                     Text(
                                       '${(Duration(seconds: userData.playTime as int)).inMinutes.remainder(60).toString().padLeft(2, '0')}:${(Duration(seconds: userData.playTime as int)).inSeconds.remainder(60).toString().padLeft(2, '0')} ',
-                                      style:
-                                          const TextStyle(color: Colors.grey),
+                                      style: TextStyle(
+                                          color: Colors.grey, fontSize: 10.sp),
                                     ),
                                     Text(
                                       timeago.format(
@@ -118,15 +125,19 @@ class _MatchResultsWidgetState extends State<MatchResultsWidget> {
                                         ),
                                         locale: 'ko',
                                       ),
-                                      style:
-                                          const TextStyle(color: Colors.grey),
+                                      style: TextStyle(
+                                          color: Colors.grey, fontSize: 10.sp),
                                     )
                                   ],
                                 ),
                                 GestureDetector(
-                                    onTap: () {},
-                                    child: const Icon(
-                                        Icons.keyboard_arrow_down_sharp))
+                                    onTap: () {
+                                      Detailed = !Detailed;
+                                      setState(() {});
+                                    },
+                                    child: Icon(!Detailed
+                                        ? Icons.keyboard_arrow_down_sharp
+                                        : Icons.keyboard_arrow_up_sharp))
                               ],
                             ),
                           ],
@@ -342,14 +353,22 @@ class _MatchResultsWidgetState extends State<MatchResultsWidget> {
                               textBaseline: TextBaseline.alphabetic,
                               children: [
                                 Text(
-                                  userData.damageToPlayer.toString(),
+                                  NumberFormat('###,###,###,###')
+                                      .format(userData.damageToPlayer)
+                                      .replaceAll(' ', ''),
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w700),
                                 ),
                                 const Text('딜량'),
                               ],
                             ),
                             Row(
                               children: [
-                                Text(userData.routeIdOfStart.toString()),
+                                Text(
+                                  userData.routeIdOfStart.toString(),
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w700),
+                                ),
                                 const SizedBox(
                                   width: 2,
                                 ),

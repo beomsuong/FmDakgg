@@ -1,137 +1,90 @@
-import 'package:dio/src/response.dart';
+class UserInfoModel {
+  String? time;
+  int? mmr;
+  String? nickName;
+  int? rank;
+  int? rankSize;
+  int? totalGames;
+  int? totalWins;
+  int? totalTeamKills;
+  int? totalDeaths;
+  int? escapeCount;
+  double? rankPercent;
+  double? averageRank;
+  double? averageKills;
+  double? averageAssistants;
+  double? averageHunts;
+  int? top1;
+  int? top2;
+  int? top3;
+  int? top5;
+  int? top7;
 
-class GameInfoModel {
-  int? iId;
-  List<UserGames>? userGames;
-  int? userNum;
-  GameInfoModel({this.iId, this.userGames, this.userNum});
+  UserInfoModel({
+    this.time,
+    this.mmr,
+    this.nickName,
+    this.rank,
+    this.rankSize,
+    this.totalGames,
+    this.totalWins,
+    this.totalTeamKills,
+    this.totalDeaths,
+    this.escapeCount,
+    this.rankPercent,
+    this.averageRank,
+    this.averageKills,
+    this.averageAssistants,
+    this.averageHunts,
+    this.top1,
+    this.top2,
+    this.top3,
+    this.top5,
+    this.top7,
+  });
 
-  GameInfoModel.fromJson(Map<String, dynamic> json, {required userNum}) {
-    iId = json['_id'];
-    this.userNum = userNum;
-    if (json['userGames'] != null) {
-      userGames = <UserGames>[];
-      json['userGames'].forEach((v) {
-        userGames!.add(UserGames.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson(Response response) {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['_id'] = iId;
-    userNum = userNum;
-    if (userGames != null) {
-      data['userGames'] = userGames!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class UserGames {
-  int? gameRank;
-  int? userNum;
-  int? playTime;
-  String? startDtm;
-  int? characterNum;
-  int? characterLevel;
-  int? teamKill;
-  int? playerKill;
-  int? playerAssistant;
-  int? damageToPlayer;
-  int? routeIdOfStart;
-  List<int>? finalInfusion;
-  Equipment? equipment;
-  int? sumTotalVFCredits;
-  String? sId;
-  int? escapeState;
-  UserGames(
-      {this.gameRank,
-      this.userNum,
-      this.playTime,
-      this.startDtm,
-      this.characterNum,
-      this.characterLevel,
-      this.teamKill,
-      this.playerKill,
-      this.playerAssistant,
-      this.damageToPlayer,
-      this.routeIdOfStart,
-      this.finalInfusion,
-      this.equipment,
-      this.sumTotalVFCredits,
-      this.sId,
-      this.escapeState});
-
-  UserGames.fromJson(Map<String, dynamic> json) {
-    gameRank = json['gameRank'];
-    userNum = json['userNum'];
-    playTime = json['playTime'];
-    startDtm = json['startDtm'];
-    characterNum = json['characterNum'];
-    characterLevel = json['characterLevel'];
-    teamKill = json['teamKill'];
-    playerKill = json['playerKill'];
-    playerAssistant = json['playerAssistant'];
-    damageToPlayer = json['damageToPlayer'];
-    routeIdOfStart = json['routeIdOfStart'];
-    finalInfusion = json['finalInfusion'].cast<int>();
-    equipment = json['equipment'] != null
-        ? Equipment.fromJson(json['equipment'])
-        : null;
-    sumTotalVFCredits = json['sumTotalVFCredits'];
-    sId = json['_id'];
-    escapeState = json['escapeState'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['gameRank'] = gameRank;
-    data['userNum'] = userNum;
-    data['playTime'] = playTime;
-    data['startDtm'] = startDtm;
-    data['characterNum'] = characterNum;
-    data['characterLevel'] = characterLevel;
-    data['teamKill'] = teamKill;
-    data['playerKill'] = playerKill;
-    data['playerAssistant'] = playerAssistant;
-    data['damageToPlayer'] = damageToPlayer;
-    data['routeIdOfStart'] = routeIdOfStart;
-    data['finalInfusion'] = finalInfusion;
-    if (equipment != null) {
-      data['equipment'] = equipment!.toJson();
-    }
-    data['sumTotalVFCredits'] = sumTotalVFCredits;
-    data['_id'] = sId;
-    data['escapeState'] = escapeState;
-    return data;
+  UserInfoModel.fromJson(Map<String, dynamic> json) {
+    time = json['time'];
+    mmr = json['mmr'];
+    nickName = json['nickName'];
+    rank = json['rank'];
+    rankSize = json['rankSize'];
+    totalGames = json['totalGames'];
+    totalWins = json['totalWins'];
+    totalTeamKills = json['totalTeamKills'];
+    totalDeaths = json['totalDeaths'];
+    escapeCount = json['escapeCount'];
+    rankPercent = (json['rankPercent'] as num?)?.toDouble();
+    averageRank = (json['averageRank'] as num?)?.toDouble();
+    averageKills = (json['averageKills'] as num?)?.toDouble();
+    averageAssistants = (json['averageAssistants'] as num?)?.toDouble();
+    averageHunts = (json['averageHunts'] as num?)?.toDouble();
+    top1 = json['top1'];
+    top2 = json['top2'];
+    top3 = json['top3'];
+    top5 = json['top5'];
+    top7 = json['top7'];
   }
 }
 
-class Equipment {
-  String? s0;
-  String? s1;
-  String? s2;
-  String? s3;
-  String? s4;
+class UserInfo {
+  int? id;
+  DateTime? time;
+  List<UserInfoModel>? userStats;
 
-  Equipment({this.s0, this.s1, this.s2, this.s3, this.s4});
+  UserInfo({
+    this.id,
+    this.time,
+    this.userStats,
+  });
 
-  Equipment.fromJson(Map<String, dynamic> json) {
-    s0 = json['0'];
-    s1 = json['1'];
-    s2 = json['2'];
-    s3 = json['3'];
-    s4 = json['4'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['0'] = s0;
-    data['1'] = s1;
-    data['2'] = s2;
-    data['3'] = s3;
-    data['4'] = s4;
-    return data;
+  UserInfo.fromJson(Map<String, dynamic> json) {
+    id = json['_id'];
+    time = json['time'] != null ? DateTime.parse(json['time']) : null;
+    userStats = json['userStats'] != null
+        ? json['userStats']
+            .map<UserInfoModel>((model) => UserInfoModel.fromJson(model))
+            .toList()
+        : [];
   }
 }

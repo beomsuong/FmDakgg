@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fmdakgg/model/userInfo_model.dart';
+import 'package:fmdakgg/model/gameInfo_model.dart';
 import 'package:fmdakgg/player_search/match_results_widget.dart';
 import 'package:fmdakgg/player_search/match_results_view_model.dart';
 
@@ -40,7 +40,6 @@ class _PlayerSearchState extends ConsumerState<PlayerSearch> {
                   final widgets = gameInfoList.map((gameInfo) {
                     return MatchResultsWidget(gameInfo: gameInfo);
                   }).toList();
-
                   final displayedWidgets =
                       widgets.length > 10 ? widgets.sublist(0, 10) : widgets;
                   return Column(

@@ -2,27 +2,21 @@ import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fmdakgg/model/gameInfo_model.dart';
 
-class MatchResultsViewModel
-    extends StateNotifier<AsyncValue<List<GameInfoModel>>> {
+class UserInfoViewModel extends StateNotifier<AsyncValue<UserInfoViewModel>> {
   final Dio dio = Dio();
   final String nickname;
-  MatchResultsViewModel(this.nickname) : super(const AsyncValue.loading()) {
+  UserInfoViewModel(this.nickname) : super(const AsyncValue.loading()) {
     fetchGameData(nickname);
   }
 
   Future<void> fetchGameData(String nickname) async {
     state = const AsyncValue.loading();
 
-    final responseNum = await dio.get('http://10.0.2.2:3000/v1/user/num/aasam');
-    print("조회한 번호 ${responseNum.data}");
     try {
-      final response = await dio.get('http://10.0.2.2:3000/player/aasam');
-
+      final response =
+          await dio.get('http://10.0.2.2:3000/v1/user/stats/aasam');
       if (response.statusCode == 200) {
-        final gameInfoList = List<GameInfoModel>.from((response.data as List)
-            .map((item) => GameInfoModel.fromJson(item,
-                userNum: responseNum.data['userNum'])));
-        state = AsyncValue.data(gameInfoList);
+        state = AsyncValue.data(response.data);
       } else {
         state = AsyncValue.error(
             Exception(

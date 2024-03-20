@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fmdakgg/model/userInfo_model.dart';
+import 'package:fmdakgg/model/gameInfo_model.dart';
 
 class MatchResultsWidget extends StatefulWidget {
   final GameInfoModel gameInfo;

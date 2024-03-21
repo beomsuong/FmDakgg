@@ -58,7 +58,7 @@ class HomeScreen extends ConsumerWidget {
                                 color: Colors.white54,
                               ),
                             ),
-                            onSubmitted: (value) {
+                            onSubmitted: (value) async {
                               context.go('/player/$value');
                             },
                           ),

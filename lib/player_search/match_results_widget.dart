@@ -71,8 +71,8 @@ class _MatchResultsWidgetState extends State<MatchResultsWidget> {
                     color: Colors.grey,
                     width: 40,
                     height: 40,
-                    child:
-                        Image.network('http://10.0.2.2:3000/charactersImage'),
+                    child: Image.network(
+                        'http://10.0.2.2:3000/charactersImage/${detailUserData.characterNum}'),
                   ),
                 ),
                 Positioned(
@@ -182,14 +182,76 @@ class _MatchResultsWidgetState extends State<MatchResultsWidget> {
             )
           ],
         ),
-      )
+      ),
+      SizedBox(
+        width: 75.9.w,
+        child: Wrap(
+          alignment: WrapAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(2.0),
+              child: Container(
+                height: 20.h,
+                width: 25.w,
+                color: Colors.grey,
+                child: Image.network(
+                    fit: BoxFit.fill,
+                    'http://10.0.2.2:3000/weaponsImage/${userData.equipment!.s0}'),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(2.0),
+              child: Container(
+                height: 20.h,
+                width: 25.w,
+                color: Colors.grey,
+                child: Image.network(
+                    fit: BoxFit.fill,
+                    'http://10.0.2.2:3000/chestImage/${userData.equipment!.s1}'),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(2.0),
+              child: Container(
+                height: 20.h,
+                width: 25.w,
+                color: Colors.grey,
+                child: Image.network(
+                    fit: BoxFit.fill,
+                    'http://10.0.2.2:3000/headImage/${userData.equipment!.s2}'),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(2.0),
+              child: Container(
+                height: 20.h,
+                width: 25.w,
+                color: Colors.grey,
+                child: Image.network(
+                    fit: BoxFit.fill,
+                    'http://10.0.2.2:3000/armImage/${userData.equipment!.s3}'),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(2.0),
+              child: Container(
+                height: 20.h,
+                width: 25.w,
+                color: Colors.grey,
+                child: Image.network(
+                    fit: BoxFit.fill,
+                    'http://10.0.2.2:3000/legImage/${userData.equipment!.s4}'),
+              ),
+            ),
+          ],
+        ),
+      ),
     ]);
   }
 
   @override
   Widget build(BuildContext context) {
     int i = 0;
-
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -317,7 +379,7 @@ class _MatchResultsWidgetState extends State<MatchResultsWidget> {
                                             width: 40,
                                             height: 40,
                                             child: Image.network(
-                                                'http://10.0.2.2:3000/charactersImage'),
+                                                'http://10.0.2.2:3000/charactersImage/${userData.characterNum}'),
                                           ),
                                         ),
                                         Positioned(
@@ -459,41 +521,56 @@ class _MatchResultsWidgetState extends State<MatchResultsWidget> {
                                     Padding(
                                       padding: const EdgeInsets.all(2.0),
                                       child: Container(
-                                        height: 20,
-                                        width: 25,
-                                        color: Colors.pink,
+                                        height: 20.h,
+                                        width: 25.w,
+                                        color: Colors.grey,
+                                        child: Image.network(
+                                            fit: BoxFit.fill,
+                                            'http://10.0.2.2:3000/weaponsImage/${userData.equipment!.s0}'),
                                       ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.all(2.0),
                                       child: Container(
-                                        height: 20,
-                                        width: 25,
-                                        color: Colors.pink,
+                                        height: 20.h,
+                                        width: 25.w,
+                                        color: Colors.grey,
+                                        child: Image.network(
+                                            fit: BoxFit.fill,
+                                            'http://10.0.2.2:3000/chestImage/${userData.equipment!.s1}'),
                                       ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.all(2.0),
                                       child: Container(
-                                        height: 20,
-                                        width: 25,
-                                        color: Colors.pink,
+                                        height: 20.h,
+                                        width: 25.w,
+                                        color: Colors.grey,
+                                        child: Image.network(
+                                            fit: BoxFit.fill,
+                                            'http://10.0.2.2:3000/headImage/${userData.equipment!.s2}'),
                                       ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.all(2.0),
                                       child: Container(
-                                        height: 20,
-                                        width: 25,
-                                        color: Colors.pink,
+                                        height: 20.h,
+                                        width: 25.w,
+                                        color: Colors.grey,
+                                        child: Image.network(
+                                            fit: BoxFit.fill,
+                                            'http://10.0.2.2:3000/armImage/${userData.equipment!.s3}'),
                                       ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.all(2.0),
                                       child: Container(
-                                        height: 20,
-                                        width: 25,
-                                        color: Colors.pink,
+                                        height: 20.h,
+                                        width: 25.w,
+                                        color: Colors.grey,
+                                        child: Image.network(
+                                            fit: BoxFit.fill,
+                                            'http://10.0.2.2:3000/legImage/${userData.equipment!.s4}'),
                                       ),
                                     ),
                                   ],
@@ -570,8 +647,10 @@ class _MatchResultsWidgetState extends State<MatchResultsWidget> {
                           width: 80.w,
                           child: const Align(
                               alignment: Alignment.center, child: Text('딜량'))),
-                      const Align(
-                          alignment: Alignment.center, child: Text('아이템')),
+                      const Expanded(
+                        child: Align(
+                            alignment: Alignment.center, child: Text('아이템')),
+                      ),
                     ],
                   ),
                 ),

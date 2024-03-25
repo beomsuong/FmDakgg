@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fmdakgg/model/gameInfo_model.dart';
 import 'package:fmdakgg/player_search/match_results_widget.dart';
 import 'package:fmdakgg/player_search/match_results_view_model.dart';
@@ -33,6 +34,88 @@ class _PlayerSearchState extends ConsumerState<PlayerSearch> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              const Text('랭크'),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(100.0),
+                    child: Container(
+                      color: Colors.grey,
+                      width: 70.w,
+                      height: 70.h,
+                    ),
+                  ),
+                  const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('6659 RP'),
+                      Text('데미갓 - 2256RP'),
+                      Text('647위')
+                    ],
+                  ),
+                ],
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [Text('평균 TK'), Text('7.8')],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [Text('승률'), Text('16.8%')],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [Text('게임 수 '), Text('179')],
+                    )
+                  ],
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [Text('평균 TK'), Text('7.8')],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [Text('승률'), Text('16.8%')],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [Text('게임 수 '), Text('179')],
+                    )
+                  ],
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [Text('평균 TK'), Text('7.8')],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [Text('승률'), Text('16.8%')],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [Text('게임 수 '), Text('179')],
+                    )
+                  ],
+                ),
+              ),
               gameInfoAsyncValue.when(
                 data: (gameInfoList) {
                   final widgets = gameInfoList

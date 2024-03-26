@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fmdakgg/model/gameInfo_model.dart';
+import 'package:fmdakgg/player_search/match_result/game_Info_model.dart';
 
 class MatchResultsViewModel
     extends StateNotifier<AsyncValue<List<GameInfoModel>>> {

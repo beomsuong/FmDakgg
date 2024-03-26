@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fmdakgg/model/gameInfo_model.dart';
-import 'package:fmdakgg/player_search/match_results_widget.dart';
-import 'package:fmdakgg/player_search/match_results_view_model.dart';
+import 'package:fmdakgg/player_search/match_result/game_Info_model.dart';
+import 'package:fmdakgg/player_search/match_result/match_results_view_model.dart';
+import 'package:fmdakgg/player_search/match_result/match_results_widget.dart';
+import 'package:fmdakgg/player_search/user_info/user_Info_view.dart';
+import 'package:fmdakgg/player_search/user_info/user_Info_view_model.dart';
+import 'package:fmdakgg/player_search/user_info/user_Info_model.dart';
 
 class PlayerSearch extends ConsumerStatefulWidget {
   final String nickname;
@@ -20,6 +23,12 @@ class _PlayerSearchState extends ConsumerState<PlayerSearch> {
       return MatchResultsViewModel(nickname);
     },
   );
+
+  final userInfoModelProvider = StateNotifierProvider.family<UserInfoViewModel,
+      AsyncValue<UserInfoModel>, String>(
+    (ref, nickname) => UserInfoViewModel(nickname),
+  );
+
   @override
   void initState() {
     super.initState();
@@ -29,91 +38,22 @@ class _PlayerSearchState extends ConsumerState<PlayerSearch> {
   Widget build(BuildContext context) {
     final gameInfoAsyncValue =
         ref.watch(matchResultsViewModelProvider(widget.nickname));
+    final userInfoAsyncValue =
+        ref.watch(userInfoModelProvider(widget.nickname));
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const Text('랭크'),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(100.0),
-                    child: Container(
-                      color: Colors.grey,
-                      width: 70.w,
-                      height: 70.h,
-                    ),
-                  ),
-                  const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('6659 RP'),
-                      Text('데미갓 - 2256RP'),
-                      Text('647위')
-                    ],
-                  ),
-                ],
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [Text('평균 TK'), Text('7.8')],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [Text('승률'), Text('16.8%')],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [Text('게임 수 '), Text('179')],
-                    )
-                  ],
+              userInfoAsyncValue.when(
+                data: (userInfo) {
+                  return UserInfoView(userInfo: userInfo);
+                },
+                loading: () => const Center(
+                  child: CircularProgressIndicator(), // 로딩 중 표시할 위젯
                 ),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [Text('평균 TK'), Text('7.8')],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [Text('승률'), Text('16.8%')],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [Text('게임 수 '), Text('179')],
-                    )
-                  ],
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [Text('평균 TK'), Text('7.8')],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [Text('승률'), Text('16.8%')],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [Text('게임 수 '), Text('179')],
-                    )
-                  ],
+                error: (error, stack) => Center(
+                  child: Text('유저 데이터 오류: $error'), // 오류 발생 시 표시할 위젯
                 ),
               ),
               gameInfoAsyncValue.when(

@@ -162,7 +162,6 @@ class _MatchResultsWidgetState extends State<MatchResultsWidget> {
                 height: 10.h,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20), // 둥근 모서리 반경 설정
-
                     border: Border.all(color: Colors.black, width: 1)),
               ),
               Container(

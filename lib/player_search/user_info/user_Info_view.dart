@@ -15,7 +15,6 @@ class UserInfoView extends ConsumerStatefulWidget {
 class _UserInfoViewState extends ConsumerState<UserInfoView> {
   @override
   Widget build(BuildContext context) {
-    print("프린트 ${widget.userInfo.userStats[0].mmr}");
     return Column(
       children: [
         const Text('랭크'),
@@ -44,35 +43,11 @@ class _UserInfoViewState extends ConsumerState<UserInfoView> {
           ],
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text('평균 TK'),
-                  Text((widget.userInfo.userStats[0].totalTeamKills /
-                          widget.userInfo.userStats[0].totalGames)
-                      .toStringAsFixed(2))
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text('승률'),
-                  Text(
-                      '${(widget.userInfo.userStats[0].totalWins / widget.userInfo.userStats[0].totalGames * 100).toStringAsFixed(1)}%')
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text('게임 수 '),
-                  Text(widget.userInfo.userStats[0].totalGames.toString())
-                ],
-              )
-            ],
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: Container(
+            height: 0.8.h,
+            width: 500.0,
+            color: Colors.grey,
           ),
         ),
         Padding(
@@ -80,54 +55,289 @@ class _UserInfoViewState extends ConsumerState<UserInfoView> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text('평균 킬'),
-                  Text(widget.userInfo.userStats[0].averageKills.toString())
-                ],
+              Expanded(
+                flex: 1,
+                child: SizedBox(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text('평균 TK'),
+                      Stack(
+                        children: <Widget>[
+                          Container(
+                            decoration: BoxDecoration(
+                                color: const Color(0xFFE6E6E6),
+                                borderRadius: BorderRadius.circular(20),
+                                border:
+                                    Border.all(color: Colors.black, width: 1)),
+                            width: 110.0.w,
+                            height: 10.0.h,
+                          ),
+                          Positioned(
+                            top: 0.0,
+                            bottom: 0.0,
+                            left: 0.0,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: const Color(0xFF666A7A),
+                                  borderRadius: BorderRadius.circular(20), //
+                                  border: Border.all(
+                                      color: Colors.black, width: 1)),
+                              width: 10.0.w,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Text((widget.userInfo.userStats[0].totalTeamKills /
+                              widget.userInfo.userStats[0].totalGames)
+                          .toStringAsFixed(2)),
+                      const Text('평균 킬'),
+                      Stack(
+                        children: <Widget>[
+                          Container(
+                            decoration: BoxDecoration(
+                                color: const Color(0xFFE6E6E6),
+                                borderRadius: BorderRadius.circular(20),
+                                border:
+                                    Border.all(color: Colors.black, width: 1)),
+                            width: 110.0.w,
+                            height: 10.0.h,
+                          ),
+                          Positioned(
+                            top: 0.0,
+                            bottom: 0.0,
+                            left: 0.0,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: const Color(0xFF666A7A),
+                                  borderRadius: BorderRadius.circular(20), //
+                                  border: Border.all(
+                                      color: Colors.black, width: 1)),
+                              width: 10.0.w,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Text(
+                          widget.userInfo.userStats[0].averageKills.toString()),
+                      const Text('평균 어시'),
+                      Stack(
+                        children: <Widget>[
+                          Container(
+                            decoration: BoxDecoration(
+                                color: const Color(0xFFE6E6E6),
+                                borderRadius: BorderRadius.circular(20),
+                                border:
+                                    Border.all(color: Colors.black, width: 1)),
+                            width: 110.0.w,
+                            height: 10.0.h,
+                          ),
+                          Positioned(
+                            top: 0.0,
+                            bottom: 0.0,
+                            left: 0.0,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: const Color(0xFF666A7A),
+                                  borderRadius: BorderRadius.circular(20), //
+                                  border: Border.all(
+                                      color: Colors.black, width: 1)),
+                              width: 10.0.w,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Text(widget.userInfo.userStats[0].averageAssistants
+                          .toString()),
+                    ],
+                  ),
+                ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text('TOP 2'),
-                  Text(widget.userInfo.userStats[0].top2.toString())
-                ],
+              Expanded(
+                flex: 1,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text('승률'),
+                    Stack(
+                      children: <Widget>[
+                        Container(
+                          decoration: BoxDecoration(
+                              color: const Color(0xFFE6E6E6),
+                              borderRadius: BorderRadius.circular(20),
+                              border:
+                                  Border.all(color: Colors.black, width: 1)),
+                          width: 110.0.w,
+                          height: 10.0.h,
+                        ),
+                        Positioned(
+                          top: 0.0,
+                          bottom: 0.0,
+                          left: 0.0,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: const Color(0xFF11B288),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            width: (110 *
+                                    widget.userInfo.userStats[0].totalWins /
+                                    widget.userInfo.userStats[0].totalGames)
+                                .w,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text(
+                        '${(widget.userInfo.userStats[0].totalWins / widget.userInfo.userStats[0].totalGames * 100).toStringAsFixed(1)}%'),
+                    const Text('TOP 2'),
+                    Stack(
+                      children: <Widget>[
+                        Container(
+                          decoration: BoxDecoration(
+                              color: const Color(0xFFE6E6E6),
+                              borderRadius: BorderRadius.circular(20),
+                              border:
+                                  Border.all(color: Colors.black, width: 1)),
+                          width: 110.0.w,
+                          height: 10.0.h,
+                        ),
+                        Positioned(
+                          top: 0.0,
+                          bottom: 0.0,
+                          left: 0.0,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: const Color(0xFF207AC7),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            width: (110 * widget.userInfo.userStats[0].top2).w,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text('${widget.userInfo.userStats[0].top2 * 100}%'),
+                    const Text('TOP 3'),
+                    Stack(
+                      children: <Widget>[
+                        Container(
+                          decoration: BoxDecoration(
+                              color: const Color(0xFFE6E6E6),
+                              borderRadius: BorderRadius.circular(20),
+                              border:
+                                  Border.all(color: Colors.black, width: 1)),
+                          width: 110.0.w,
+                          height: 10.0.h,
+                        ),
+                        Positioned(
+                          top: 0.0,
+                          bottom: 0.0,
+                          left: 0.0,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: const Color(0xFF207AC7),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            width: (110 * widget.userInfo.userStats[0].top3).w,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text('${widget.userInfo.userStats[0].top3 * 100}%'),
+                  ],
+                ),
               ),
-              const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [Text('평균딜량 '), Text('초비상')],
-              )
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text('평균 어시'),
-                  Text(
-                      widget.userInfo.userStats[0].averageAssistants.toString())
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text('TOP 3'),
-                  Text(widget.userInfo.userStats[0].top3.toString())
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text('평균 순위'),
-                  Text(
-                      '#${widget.userInfo.userStats[0].averageRank.toString()}')
-                ],
+              Expanded(
+                flex: 1,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text('게임 수 '),
+                    Stack(
+                      children: <Widget>[
+                        Container(
+                          decoration: BoxDecoration(
+                              color: const Color(0xFFE6E6E6),
+                              borderRadius: BorderRadius.circular(20),
+                              border:
+                                  Border.all(color: Colors.black, width: 1)),
+                          width: 110.0.w,
+                          height: 10.0.h,
+                        ),
+                        Positioned(
+                          top: 0.0,
+                          bottom: 0.0,
+                          left: 0.0,
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: const Color(0xFF666A7A),
+                                borderRadius: BorderRadius.circular(20), //
+                                border:
+                                    Border.all(color: Colors.black, width: 1)),
+                            width: 10.0.w,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text(widget.userInfo.userStats[0].totalGames.toString()),
+                    const Text('평균딜량 '),
+                    Stack(
+                      children: <Widget>[
+                        Container(
+                          decoration: BoxDecoration(
+                              color: const Color(0xFFE6E6E6),
+                              borderRadius: BorderRadius.circular(20),
+                              border:
+                                  Border.all(color: Colors.black, width: 1)),
+                          width: 110.0.w,
+                          height: 10.0.h,
+                        ),
+                        Positioned(
+                          top: 0.0,
+                          bottom: 0.0,
+                          left: 0.0,
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: const Color(0xFF666A7A),
+                                borderRadius: BorderRadius.circular(20), //
+                                border:
+                                    Border.all(color: Colors.black, width: 1)),
+                            width: 10.0.w,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Text('초비상'),
+                    const Text('평균 순위'),
+                    Stack(
+                      children: <Widget>[
+                        Container(
+                          decoration: BoxDecoration(
+                              color: const Color(0xFFE6E6E6),
+                              borderRadius: BorderRadius.circular(20),
+                              border:
+                                  Border.all(color: Colors.black, width: 1)),
+                          width: 110.0.w,
+                          height: 10.0.h,
+                        ),
+                        Positioned(
+                          top: 0.0,
+                          bottom: 0.0,
+                          left: 0.0,
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: const Color(0xFF666A7A),
+                                borderRadius: BorderRadius.circular(20),
+                                border:
+                                    Border.all(color: Colors.black, width: 1)),
+                            width: 10.0.w,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text(
+                        '#${widget.userInfo.userStats[0].averageRank.toString()}')
+                  ],
+                ),
               )
             ],
           ),
